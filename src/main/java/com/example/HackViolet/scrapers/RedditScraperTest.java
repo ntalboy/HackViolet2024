@@ -9,7 +9,7 @@ public class RedditScraperTest {
 
     @Test
     public void testRedditScraper() {
-        RedditScraper redditScraper = new RedditScraper();
+        RedditScraper redditScraper = new RedditScraper("ntalboy");
         String result = redditScraper.getProfileDescription();
 
         System.out.println(result);
