@@ -1,38 +1,60 @@
+/* App.css */
 .App {
   text-align: center;
+  background-image: url("./images/computer.png"); /* Ensure this path is correct */
+  background-size: cover;
+  height: 100vh;
+  color: #834594;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; /* Modern font */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.header {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  padding: 20px;
+}
+
+.tab {
+  margin: 0 15px;
+  padding: 15px 25px;
+  cursor: pointer;
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transitions */
+}
+
+.tab:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* Hover effect */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+}
+
+.selected {
+  border-bottom: 3px solid #834594; /* A brighter red for the selection */
+  color: #834594; /* Text color matches the underline */
+}
+
+.search-section {
+  margin-top: 50px;
+}
+
+.search-bar input {
+  padding: 15px;
+  margin-right: -4px; /* To make the button fit perfectly next to the input */
+  width: 350px;
+  border: 2px solid #dddddd; /* Subtle border */
+  border-radius: 5px 0 0 5px; /* Rounded corners on the left side */
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Inner shadow for depth */
+}
+
+.search-bar button {
+  padding: 15px;
+  background-color: #834594; /* A brighter red for the button */
   color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 0 5px 5px 0; /* Rounded corners on the right side */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.search-bar button:hover {
+  background-color: #834594; /* Lighter red on hover */
 }
