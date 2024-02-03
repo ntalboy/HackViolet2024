@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.2.2'
 	id 'io.spring.dependency-management' version '1.1.4'
+	id "com.github.node-gradle.node" version "7.0.0"
 }
 
 group = 'com.example'
@@ -19,6 +20,55 @@ configurations {
 
 repositories {
 	mavenCentral()
+}
+
+node {
+	version = '18.15.0'
+	download = false
+	distBaseUrl = "https://nodejs.org/dist"
+
+	// Specifies whether it is acceptable to communicate with the Node.js repository over an insecure HTTP connection.
+	// Only used if download is true
+	// Change it to true if you use a mirror that uses HTTP rather than HTTPS
+	// Or set to null if you want to use Gradle's default behaviour.
+	allowInsecureProtocol = null
+
+	// The npm command executed by the npmInstall task
+	// By default it is install but it can be changed to ci
+	npmInstallCommand = "install"
+
+	// The directory where Node.js is unpacked (when download is true)
+	workDir = file("${project.projectDir}/src/main/frontend-violet/nodejs")
+
+	// The directory where npm is installed (when a specific version is defined)
+	npmWorkDir = file("${project.projectDir}/src/main/frontend-violet/npm")
+}
+
+task npmInstallDependencies(type: NpmTask) {
+	dependsOn 'npmSetup'
+	execOverrides {
+		it.ignoreExitValue = true
+		it.workingDir = 'src/main/frontend-violet'
+	}
+	args = ['install']
+}
+
+task npmBuild(type: NpmTask) {
+	dependsOn 'npmInstallDependencies'
+	execOverrides {
+		it.workingDir = 'src/main/frontend-violet'
+	}
+	args = ['run', 'build']
+}
+
+task copyFrontEndToBuild(type: Copy) {
+	dependsOn 'npmBuild'
+	from "$projectDir/src/main/frontend-violet/build/"
+	into "$buildDir/resources/main/static"
+}
+
+processResources {
+	dependsOn 'copyFrontEndToBuild'
 }
 
 dependencies {
