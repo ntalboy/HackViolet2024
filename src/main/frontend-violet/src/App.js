@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import "./App.css";
 
@@ -33,11 +33,23 @@ function Header() {
 }
 
 function Search() {
-  // Added useState to handle the input field
-  const [searchInput, setSearchInput] = React.useState("");
+  const [searchInput, setSearchInput] = useState("");
+  const [profileFlags, setProfileFlags] = useState(null);
 
-  // This will handle the state for showing the mock results
-  const [showResults, setShowResults] = React.useState(false);
+  const fetchProfiles = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:8080/search?username=${encodeURIComponent(
+          searchInput
+        )}`
+      );
+      const data = await response.json();
+      setProfileFlags(data);
+    } catch (error) {
+      console.error("Failed to fetch profile flags:", error);
+      setProfileFlags(null);
+    }
+  };
 
   return (
     <>
@@ -56,36 +68,84 @@ function Search() {
           />
           <button
             className="bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-8 rounded-r-lg shadow-lg transition-colors duration-300"
-            onClick={() => setShowResults(true)}
+            onClick={fetchProfiles}
           >
             Search
           </button>
         </div>
-        {showResults && <ProfileResults searchInput={searchInput} />}
+        {profileFlags && <ProfileResults profileFlags={profileFlags} />}
       </div>
     </>
   );
 }
 
-function ProfileResults({ searchInput }) {
-  // Static data for display purposes
-  const profiles = [
-    { name: "Reddit", username: "Not Taken" },
-    { name: "Twitter (X)", username: "Not Taken" },
-    { name: "LinkedIn", username: "Not Taken" },
-    { name: "Facebook (Meta) ", username: "Not Taken" },
-    // Add more profiles as needed
+function FlaggedMessage({ message }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div className="relative inline-block text-left">
+      <div>
+        <button
+          type="button"
+          className="text-red-600 hover:text-red-700 flex items-center"
+          onClick={() => setIsOpen(!isOpen)} // Toggle dropdown visibility
+        >
+          Flagged Message
+          <span className={`ml-2 ${isOpen ? "transform rotate-180" : ""}`}>
+            ▼ {/* Dropdown icon */}
+          </span>
+        </button>
+      </div>
+      {isOpen && ( // Only display this div when isOpen is true
+        <div className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+          <div
+            className="py-1"
+            role="menu"
+            aria-orientation="vertical"
+            aria-labelledby="options-menu"
+          >
+            <a
+              href="#"
+              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              role="menuitem"
+            >
+              {message}
+            </a>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function ProfileResults({ profileFlags }) {
+  const platforms = [
+    { name: "Reddit", flag: profileFlags.redditFlag },
+    { name: "Twitter", flag: profileFlags.twitterFlag },
+    { name: "LinkedIn", flag: profileFlags.linkedinFlag },
+    { name: "Facebook", flag: profileFlags.facebookFlag },
   ];
+
+  const renderFlagStatus = (flag, message) => {
+    if (flag === "0") {
+      return <div className="text-green-600">No issues found</div>;
+    } else {
+      return <FlaggedMessage message={message} />;
+    }
+  };
 
   return (
     <div className="profile-results mx-auto mt-4 mb-8 p-6 max-w-6xl bg-white rounded-lg shadow-xl">
-      {profiles.map((profile, index) => (
+      <h3 className="text-xl font-semibold mb-4">Profile Flags</h3>
+      {platforms.map((platform, index) => (
         <div
           key={index}
-          className="flex items-center justify-between p-4 border-b"
+          className={`p-4 ${
+            platform.flag === "0" ? "bg-green-100" : "bg-red-100"
+          } rounded-lg mb-3`}
         >
-          <span className="font-bold">{profile.name}</span>
-          <span>{searchInput ? searchInput : profile.username}</span>
+          <h4 className="font-bold">{platform.name}</h4>
+          {renderFlagStatus(platform.flag, platform.flag)}
         </div>
       ))}
     </div>

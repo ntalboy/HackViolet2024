@@ -15,11 +15,10 @@ public class LanguageChecker {
      * @param scraper Social media scraper that retrieves profile
      * @return true string if flag was found, false otherwise
      */
-    public static boolean reviewProfile(Scraper scraper) {
+    public static String reviewProfile(Scraper scraper) {
         final String promptInstructions = "Review the following social media profile description " +
-                "for discriminatory language. If it contains any red flags respond with yes, " +
-                "otherwise no. Make sure that your response is a single lowercase word with no " +
-                "punctuation.\nDESCRIPTION:";
+                "for discriminatory language. If you find a red flag, make your response the sentence that was the red flag" +
+                ", otherwise respond with 0. Do NOT respond with any additional text.";
         String description = scraper.getProfileDescription();
 
         String prompt = promptInstructions + description;
@@ -35,6 +34,6 @@ public class LanguageChecker {
                 .build();
         ChatMessage responseMessage = service.createChatCompletion(chatCompletionRequest).getChoices().get(0).getMessage();
 
-        return responseMessage.getContent().equals("yes");
+        return responseMessage.getContent();
     }
 }

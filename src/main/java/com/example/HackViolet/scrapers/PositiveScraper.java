@@ -11,6 +11,6 @@ public class PositiveScraper implements Scraper {
      */
     @Override
     public String getProfileDescription() {
-        return "This is a discriminatory message that contains red flags!";
+        return "I hate women! I love cars!";
     }
 }
