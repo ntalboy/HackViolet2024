@@ -2,8 +2,6 @@ package com.example.HackViolet.scrapers;
 
 import org.testng.annotations.Test;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.testng.AssertJUnit.assertNotNull;
 import static org.testng.AssertJUnit.assertTrue;
 
@@ -14,6 +12,7 @@ public class RedditScraperTest {
         RedditScraper redditScraper = new RedditScraper();
         String result = redditScraper.getProfileDescription();
 
+        System.out.println(result);
         assertNotNull(result);
         assertTrue(result.length() > 0);
 
