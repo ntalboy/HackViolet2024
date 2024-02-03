@@ -1,9 +1,7 @@
-<<<<<<< HEAD
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-=======
-/* App.css */
+
 .App {
   text-align: center;
   background-image: url("./images/computer.png"); /* Ensure this path is correct */
@@ -63,4 +61,3 @@
 .search-bar button:hover {
   background-color: #834594; /* Lighter red on hover */
 }
->>>>>>> d49bed6393f0fce7aff201869df165f825f060d0
