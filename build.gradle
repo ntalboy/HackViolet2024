@@ -82,6 +82,7 @@ dependencies {
 	implementation 'com.github.masecla22:Reddit4J:master-SNAPSHOT'
 	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
 	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+	implementation 'com.theokanning.openai-gpt3-java:service:0.18.2'
 }
 
 test {
