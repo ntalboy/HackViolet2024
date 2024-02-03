@@ -5,12 +5,12 @@ import org.testng.annotations.Test;
 import static org.testng.AssertJUnit.assertNotNull;
 import static org.testng.AssertJUnit.assertTrue;
 
-public class RedditScraperTest {
+public class TwitterScraperTest {
 
     @Test
-    public void testRedditScraper() {
-        RedditScraper redditScraper = new RedditScraper("Majestic_Fox_428");
-        String result = redditScraper.getProfileDescription();
+    public void testTwitterScraper() {
+        TwitterScraper TwitterScraper = new TwitterScraper("TheDunkCentral");
+        String result = TwitterScraper.getProfileDescription();
 
         System.out.println(result);
         assertNotNull(result);

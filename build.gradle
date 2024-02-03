@@ -85,7 +85,9 @@ dependencies {
 	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
 	implementation 'com.theokanning.openai-gpt3-java:service:0.18.2'
 //	compile "net.dean.jraw:JRAW:$jrawVersion"
-	implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.0'
+//	implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.0'
+	implementation 'org.jsoup:jsoup:1.17.2'
+	implementation 'com.google.code.gson:gson:2.8.8'
 }
 
 test {
