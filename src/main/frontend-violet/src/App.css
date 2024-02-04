@@ -3,5 +3,18 @@
 @tailwind utilities;
 
 .bg-circular-gradient {
-    background-image: radial-gradient(circle, #C4B5FD 80%, transparent 100%);
-  }
+    background-color: #8651FF;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cpolygon fill='%23341f62' points='957 450 539 900 1396 900'/%3E%3Cpolygon fill='%2353329d' points='957 450 872.9 900 1396 900'/%3E%3Cpolygon fill='%23362167' points='-60 900 398 662 816 900'/%3E%3Cpolygon fill='%2352329c' points='337 900 398 662 816 900'/%3E%3Cpolygon fill='%2339226c' points='1203 546 1552 900 876 900'/%3E%3Cpolygon fill='%2351319a' points='1203 546 1552 900 1162 900'/%3E%3Cpolygon fill='%233b2471' points='641 695 886 900 367 900'/%3E%3Cpolygon fill='%23513199' points='587 900 641 695 886 900'/%3E%3Cpolygon fill='%233e2576' points='1710 900 1401 632 1096 900'/%3E%3Cpolygon fill='%23503097' points='1710 900 1401 632 1365 900'/%3E%3Cpolygon fill='%2340277b' points='1210 900 971 687 725 900'/%3E%3Cpolygon fill='%234f3096' points='943 900 1210 900 971 687'/%3E%3C/svg%3E");
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+@font-face {
+    font-family: "urbane";
+    src: url("./images/urbane.ttf");
+}
+
+@font-face {
+    font-family: "urbane-light";
+    src: url("./images/urbane-light.ttf");
+}

@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import "./App.css";
 import compimg from "./images/computer-picture.png";
 
 function App() {
+  useEffect(() => {
+    document.title = "Profile Insights";
+  }, []);
   return (
-    <div className="bg-gradient-to-r from-violet-300 to-violet-400 min-h-screen">
+    <div className="bg-circular-gradient from-violet-300 to-violet-400 min-h-screen">
       <Router>
         <Routes>
           <Route path="/" element={<Search />} />
@@ -18,30 +21,29 @@ function App() {
 
 function Header() {
   return (
-    <div className="header flex items-center bg-violet-600 p-4 text-white">
-      {/* Left content */}
+    <div className="header flex items-center bg-violet-800 p-4 text-white">
       <div className="flex justify-start items-center flex-grow">
         <Link
           to="/"
-          className="tab font-semibold text-lg cursor-pointer px-4 py-2 mr-2 bg-violet-500 hover:bg-violet-900 rounded-lg shadow transition-colors duration-300"
+          className="tab font-urbane text-lg cursor-pointer px-4 py-2 mr-2 bg-violet-500 hover:bg-violet-900 rounded-lg shadow transition-colors duration-300"
         >
           Profile Search
         </Link>
         <Link
           to="/about"
-          className="tab font-semibold text-lg cursor-pointer px-4 py-2 ml-2 bg-violet-500 hover:bg-violet-900 rounded-lg shadow transition-colors duration-300"
+          className="tab font-urbane text-lg cursor-pointer px-4 py-2 ml-2 bg-violet-500 hover:bg-violet-900 rounded-lg shadow transition-colors duration-300"
         >
           About Us
         </Link>
       </div>
 
-      {/* Center content - Title */}
-      {/* Ensure the title is in a container that doesn't grow to keep it centered */}
-      <div className="mx-auto absolute left-0 right-0 text-center">
-        <h1 className="text-5xl font-bold">Profile Insights</h1>
+      <div
+        className="mx-auto absolute left-0 right-0 text-center"
+        style={{ width: "max-content" }}
+      >
+        <h1 className="text-5xl font-urbane font-bold">Profile Insights</h1>
       </div>
 
-      {/* Right content - Adjusted to ensure symmetry with left side for visual balance */}
       <div className="flex justify-end items-center flex-grow">
         <img
           src={compimg} // Replace with your image path
@@ -75,10 +77,7 @@ function Search() {
   return (
     <>
       <Header />
-      <div className="search-section mx-auto mt-12 mb-8 p-6 max-w-6xl bg-white rounded-lg shadow-xl">
-        <div className="text-center mb-6">
-          <h2 className="text-4xl font-bold text-violet-800">Profile Search</h2>
-        </div>
+      <div className="search-section mx-auto mt-12 mb-8 p-6 max-w-6xl rounded-lg">
         <div className="search-bar flex justify-center">
           <input
             type="text"
@@ -88,7 +87,7 @@ function Search() {
             onChange={(e) => setSearchInput(e.target.value)}
           />
           <button
-            className="bg-violet-500 hover:bg-violet-800 text-white font-bold py-2 px-8 rounded-r-lg shadow-lg transition-colors duration-300"
+            className="bg-violet-800 hover:bg-violet-900 text-white font-bold py-2 px-8 rounded-r-lg shadow-lg transition-colors duration-300"
             onClick={fetchProfiles}
           >
             Search
@@ -179,27 +178,7 @@ export { Search, AboutUs, Header, ProfileResults };
 function AboutUs() {
   return (
     <>
-      <div className="header flex justify-between items-center bg-violet-600 p-4 text-white">
-        <div className="flex justify-start items-center">
-          <Link
-            to="/"
-            className="tab font-semibold text-lg cursor-pointer px-4 py-2 mr-2 bg-violet-500 hover:bg-violet-900 rounded-lg shadow transition-colors duration-300"
-          >
-            Profile Search
-          </Link>
-          <Link
-            to="/about"
-            className="tab font-semibold text-lg cursor-pointer px-4 py-2 ml-2 bg-violet-500 hover:bg-violet-900 rounded-lg shadow transition-colors duration-300"
-          >
-            About Us
-          </Link>
-        </div>
-        <img
-          src={compimg} // Replace with your image path
-          alt="Description"
-          className="h-10 w-810" // Adjust the size as needed
-        />
-      </div>
+      <Header />
       <div className="about-us mx-auto p-6 max-w-4xl bg-white rounded-lg shadow-xl">
         <h2 className="text-4xl font-bold text-violet-800 mb-6">About Us</h2>
       </div>
