@@ -198,7 +198,12 @@ function AboutUs() {
       <div className="team-profiles mx-auto mt-8 p-6 max-w-4xl bg-white rounded-lg shadow-xl">
         <h3 className="text-3xl font-bold text-violet-800 mb-4">Our Team</h3>
         <div className="grid grid-cols-4 gap-4">
-          <a href={estLink} className="profile-link text-center">
+          <a
+            href={estLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="profile-link text-center"
+          >
             <img
               src={estimg}
               alt="Esteban"
@@ -206,7 +211,12 @@ function AboutUs() {
             />
             <p className="mt-2">Esteban</p>
           </a>
-          <a href={natLink} className="profile-link text-center">
+          <a
+            href={natLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="profile-link text-center"
+          >
             <img
               src={natimg}
               alt="Nathan"
@@ -214,7 +224,12 @@ function AboutUs() {
             />
             <p className="mt-2">Nathan</p>
           </a>
-          <a href={salLink} className="profile-link text-center">
+          <a
+            href={salLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="profile-link text-center"
+          >
             <img
               src={salimg}
               alt="Salvador"
@@ -222,7 +237,12 @@ function AboutUs() {
             />
             <p className="mt-2">Salvador</p>
           </a>
-          <a href={timLink} className="profile-link text-center">
+          <a
+            href={timLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="profile-link text-center"
+          >
             <img
               src={timimg}
               alt="Timothy"
