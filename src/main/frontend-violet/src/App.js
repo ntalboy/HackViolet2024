@@ -175,6 +175,12 @@ function ProfileResults({ profileFlags }) {
 export { Search, AboutUs, Header, ProfileResults };
 
 function AboutUs() {
+  const estLink = "https://www.linkedin.com/in/estebanrodriguez03/";
+  const natLink = "https://www.linkedin.com/in/n-talbot/";
+  const salLink =
+    "https://www.linkedin.com/in/salvador-buenadicha-calvo-59b602241/";
+  const timLink = "https://www.linkedin.com/in/timothyson03/";
+
   return (
     <>
       <Header />
@@ -192,40 +198,46 @@ function AboutUs() {
       <div className="team-profiles mx-auto mt-8 p-6 max-w-4xl bg-white rounded-lg shadow-xl">
         <h3 className="text-3xl font-bold text-violet-800 mb-4">Our Team</h3>
         <div className="grid grid-cols-4 gap-4">
-          <div className="text-center">
+          <a href={estLink} className="profile-link text-center">
             <img
               src={estimg}
-              alt="Name1"
-              className="mx-auto w-24 h-24 rounded-full"
+              alt="Esteban"
+              className="profile-img mx-auto w-24 h-24 rounded-full"
             />
             <p className="mt-2">Esteban</p>
-          </div>
-          <div className="text-center">
+          </a>
+          <a href={natLink} className="profile-link text-center">
             <img
               src={natimg}
-              alt="Name2"
-              className="mx-auto w-24 h-24 rounded-full"
+              alt="Nathan"
+              className="profile-img mx-auto w-24 h-24 rounded-full"
             />
             <p className="mt-2">Nathan</p>
-          </div>
-          <div className="text-center">
+          </a>
+          <a href={salLink} className="profile-link text-center">
             <img
               src={salimg}
-              alt="Name3"
-              className="mx-auto w-24 h-24 rounded-full"
+              alt="Salvador"
+              className="profile-img mx-auto w-24 h-24 rounded-full"
             />
             <p className="mt-2">Salvador</p>
-          </div>
-          <div className="text-center">
+          </a>
+          <a href={timLink} className="profile-link text-center">
             <img
               src={timimg}
-              alt="Name4"
-              className="mx-auto w-24 h-24 rounded-full"
+              alt="Timothy"
+              className="profile-img mx-auto w-24 h-24 rounded-full"
             />
             <p className="mt-2">Timothy</p>
-          </div>
+          </a>
         </div>
       </div>
+      <style jsx>{`
+        .profile-link:hover .profile-img {
+          transform: scale(1.1);
+          transition: transform 0.3s ease;
+        }
+      `}</style>
     </>
   );
 }
