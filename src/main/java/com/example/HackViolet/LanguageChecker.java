@@ -18,7 +18,7 @@ public class LanguageChecker {
     public static String reviewProfile(Scraper scraper) {
         final String promptInstructions = "Review the following social media profile description " +
                 "for discriminatory language. If you find a red flag, make your response the sentence that was the red flag" +
-                ", otherwise respond with 0. Do NOT respond with any additional text.";
+                ", otherwise respond with 0. Do NOT respond with any additional text. \n DESCRIPTION:";
         String description = scraper.getProfileDescription();
 
         String prompt = promptInstructions + description;
@@ -28,9 +28,9 @@ public class LanguageChecker {
         messages.add(userMessage);
         ChatCompletionRequest chatCompletionRequest = ChatCompletionRequest
                 .builder()
-                .model("gpt-3.5-turbo-0613")
+                .model("gpt-3.5-turbo-0125")
                 .messages(messages)
-                .maxTokens(256)
+                .maxTokens(800)
                 .build();
         ChatMessage responseMessage = service.createChatCompletion(chatCompletionRequest).getChoices().get(0).getMessage();
 

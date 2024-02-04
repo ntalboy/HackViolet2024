@@ -1,33 +1,54 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import "./App.css";
+import compimg from "./images/computer-picture.png";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Search />} />
-        <Route path="/about" element={<AboutUs />} />
-      </Routes>
-    </Router>
+    <div className="bg-gradient-to-r from-violet-300 to-violet-400 min-h-screen">
+      <Router>
+        <Routes>
+          <Route path="/" element={<Search />} />
+          <Route path="/about" element={<AboutUs />} />
+        </Routes>
+      </Router>
+    </div>
   );
 }
 
 function Header() {
   return (
-    <div className="header flex justify-between items-center bg-purple-600 p-4 text-white">
-      <Link
-        to="/"
-        className="tab font-semibold text-lg cursor-pointer px-4 py-2 hover:bg-purple-700 rounded-lg shadow transition-colors duration-300"
-      >
-        Profile Search
-      </Link>
-      <Link
-        to="/about"
-        className="tab font-semibold text-lg cursor-pointer px-4 py-2 hover:bg-purple-700 rounded-lg shadow transition-colors duration-300"
-      >
-        About Us
-      </Link>
+    <div className="header flex items-center bg-violet-600 p-4 text-white">
+      {/* Left content */}
+      <div className="flex justify-start items-center flex-grow">
+        <Link
+          to="/"
+          className="tab font-semibold text-lg cursor-pointer px-4 py-2 mr-2 bg-violet-500 hover:bg-violet-900 rounded-lg shadow transition-colors duration-300"
+        >
+          Profile Search
+        </Link>
+        <Link
+          to="/about"
+          className="tab font-semibold text-lg cursor-pointer px-4 py-2 ml-2 bg-violet-500 hover:bg-violet-900 rounded-lg shadow transition-colors duration-300"
+        >
+          About Us
+        </Link>
+      </div>
+
+      {/* Center content - Title */}
+      {/* Ensure the title is in a container that doesn't grow to keep it centered */}
+      <div className="mx-auto absolute left-0 right-0 text-center">
+        <h1 className="text-5xl font-bold">Profile Insights</h1>
+      </div>
+
+      {/* Right content - Adjusted to ensure symmetry with left side for visual balance */}
+      <div className="flex justify-end items-center flex-grow">
+        <img
+          src={compimg} // Replace with your image path
+          alt="Description"
+          className="h-10 w-10" // Adjust the size as needed
+        />
+      </div>
     </div>
   );
 }
@@ -39,7 +60,7 @@ function Search() {
   const fetchProfiles = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8080/search?username=${encodeURIComponent(
+        `https://hackviolet2024-413222.uk.r.appspot.com/search?username=${encodeURIComponent(
           searchInput
         )}`
       );
@@ -56,18 +77,18 @@ function Search() {
       <Header />
       <div className="search-section mx-auto mt-12 mb-8 p-6 max-w-6xl bg-white rounded-lg shadow-xl">
         <div className="text-center mb-6">
-          <h2 className="text-4xl font-bold text-purple-800">Profile Search</h2>
+          <h2 className="text-4xl font-bold text-violet-800">Profile Search</h2>
         </div>
         <div className="search-bar flex justify-center">
           <input
             type="text"
             placeholder="Search profiles..."
-            className="w-3/4 p-3 border border-purple-300 rounded-l-lg focus:outline-none"
+            className="w-3/4 p-3 border border-violet-300 rounded-l-lg focus:outline-none"
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
           />
           <button
-            className="bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-8 rounded-r-lg shadow-lg transition-colors duration-300"
+            className="bg-violet-500 hover:bg-violet-800 text-white font-bold py-2 px-8 rounded-r-lg shadow-lg transition-colors duration-300"
             onClick={fetchProfiles}
           >
             Search
@@ -158,22 +179,29 @@ export { Search, AboutUs, Header, ProfileResults };
 function AboutUs() {
   return (
     <>
-      <div className="header flex justify-between items-center bg-purple-600 p-4 text-white">
-        <Link
-          to="/"
-          className="tab font-semibold text-lg cursor-pointer px-4 py-2 bg-purple-800 rounded-lg shadow"
-        >
-          Profile Search
-        </Link>
-        <Link
-          to="/about"
-          className="tab font-semibold text-lg cursor-pointer px-4 py-2 hover:bg-purple-700 rounded-lg shadow transition-colors duration-300"
-        >
-          About Us
-        </Link>
+      <div className="header flex justify-between items-center bg-violet-600 p-4 text-white">
+        <div className="flex justify-start items-center">
+          <Link
+            to="/"
+            className="tab font-semibold text-lg cursor-pointer px-4 py-2 mr-2 bg-violet-500 hover:bg-violet-900 rounded-lg shadow transition-colors duration-300"
+          >
+            Profile Search
+          </Link>
+          <Link
+            to="/about"
+            className="tab font-semibold text-lg cursor-pointer px-4 py-2 ml-2 bg-violet-500 hover:bg-violet-900 rounded-lg shadow transition-colors duration-300"
+          >
+            About Us
+          </Link>
+        </div>
+        <img
+          src={compimg} // Replace with your image path
+          alt="Description"
+          className="h-10 w-810" // Adjust the size as needed
+        />
       </div>
       <div className="about-us mx-auto p-6 max-w-4xl bg-white rounded-lg shadow-xl">
-        <h2 className="text-4xl font-bold text-purple-800 mb-6">About Us</h2>
+        <h2 className="text-4xl font-bold text-violet-800 mb-6">About Us</h2>
       </div>
     </>
   );
