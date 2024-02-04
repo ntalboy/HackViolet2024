@@ -23,7 +23,7 @@ public class LanguageChecker {
 
         String prompt = promptInstructions + description;
         List<ChatMessage> messages = new ArrayList<>();
-        OpenAiService service = new OpenAiService("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");
+        OpenAiService service = new OpenAiService(System.getenv("OPENAI_API_KEY"));
         ChatMessage userMessage = new ChatMessage(ChatMessageRole.USER.value(), prompt);
         messages.add(userMessage);
         ChatCompletionRequest chatCompletionRequest = ChatCompletionRequest
