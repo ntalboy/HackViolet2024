@@ -32,8 +32,9 @@ public class LanguageChecker {
                 .messages(messages)
                 .maxTokens(800)
                 .build();
-        ChatMessage responseMessage = service.createChatCompletion(chatCompletionRequest).getChoices().get(0).getMessage();
 
+        System.out.println("Sending OpenAI Message...");
+        ChatMessage responseMessage = service.createChatCompletion(chatCompletionRequest).getChoices().get(0).getMessage();
         return responseMessage.getContent();
     }
 }

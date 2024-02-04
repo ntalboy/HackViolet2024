@@ -2,13 +2,17 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import "./App.css";
 import compimg from "./images/computer-picture.png";
+import salimg from "./images/salvador.jpg";
+import natimg from "./images/nathan.jpg";
+import timimg from "./images/timothy.jpg";
+import estimg from "./images/esteban.jpg";
 
 function App() {
   useEffect(() => {
     document.title = "Profile Insights";
   }, []);
   return (
-    <div className="bg-circular-gradient from-violet-300 to-violet-400 min-h-screen">
+    <div className="bg-circular-gradient bg-topo from-violet-300 to-violet-400 min-h-screen">
       <Router>
         <Routes>
           <Route path="/" element={<Search />} />
@@ -45,11 +49,7 @@ function Header() {
       </div>
 
       <div className="flex justify-end items-center flex-grow">
-        <img
-          src={compimg} // Replace with your image path
-          alt="Description"
-          className="h-10 w-10" // Adjust the size as needed
-        />
+        <img src={compimg} alt="Description" className="h-10 w-10" />
       </div>
     </div>
   );
@@ -62,7 +62,7 @@ function Search() {
   const fetchProfiles = async () => {
     try {
       const response = await fetch(
-        `https://hackviolet2024-413222.uk.r.appspot.com/search?username=${encodeURIComponent(
+        `https://profile-insights.uk.r.appspot.com/search?username=${encodeURIComponent(
           searchInput
         )}`
       );
@@ -108,15 +108,15 @@ function FlaggedMessage({ message }) {
         <button
           type="button"
           className="text-red-600 hover:text-red-700 flex items-center"
-          onClick={() => setIsOpen(!isOpen)} // Toggle dropdown visibility
+          onClick={() => setIsOpen(!isOpen)}
         >
           Flagged Message
           <span className={`ml-2 ${isOpen ? "transform rotate-180" : ""}`}>
-            ▼ {/* Dropdown icon */}
+            ▼
           </span>
         </button>
       </div>
-      {isOpen && ( // Only display this div when isOpen is true
+      {isOpen && (
         <div className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
           <div
             className="py-1"
@@ -172,15 +172,59 @@ function ProfileResults({ profileFlags }) {
   );
 }
 
-// Make sure to export your components if they are in separate files
 export { Search, AboutUs, Header, ProfileResults };
 
 function AboutUs() {
   return (
     <>
       <Header />
-      <div className="about-us mx-auto p-6 max-w-4xl bg-white rounded-lg shadow-xl">
+      <div className="about-us mx-auto p-6 max-w-4xl bg-white rounded-lg shadow-xl mt-7">
         <h2 className="text-4xl font-bold text-violet-800 mb-6">About Us</h2>
+        <p>
+          We are a team of VT students dedicated to creating a positive online
+          presence for all. Our website aims to review users' social media
+          accounts by analyzing historical content to detect potential issues,
+          such as sexism, bias, and discrimination. Our objective is not to
+          expose individuals but to enhance awareness of one’s digital
+          footprint, promoting a more inclusive and respectful online community.
+        </p>
+      </div>
+      <div className="team-profiles mx-auto mt-8 p-6 max-w-4xl bg-white rounded-lg shadow-xl">
+        <h3 className="text-3xl font-bold text-violet-800 mb-4">Our Team</h3>
+        <div className="grid grid-cols-4 gap-4">
+          <div className="text-center">
+            <img
+              src={estimg}
+              alt="Name1"
+              className="mx-auto w-24 h-24 rounded-full"
+            />
+            <p className="mt-2">Esteban</p>
+          </div>
+          <div className="text-center">
+            <img
+              src={natimg}
+              alt="Name2"
+              className="mx-auto w-24 h-24 rounded-full"
+            />
+            <p className="mt-2">Nathan</p>
+          </div>
+          <div className="text-center">
+            <img
+              src={salimg}
+              alt="Name3"
+              className="mx-auto w-24 h-24 rounded-full"
+            />
+            <p className="mt-2">Salvador</p>
+          </div>
+          <div className="text-center">
+            <img
+              src={timimg}
+              alt="Name4"
+              className="mx-auto w-24 h-24 rounded-full"
+            />
+            <p className="mt-2">Timothy</p>
+          </div>
+        </div>
       </div>
     </>
   );

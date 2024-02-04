@@ -27,6 +27,7 @@ public class RedditScraper implements Scraper {
         try {
             String url = "https://www.reddit.com/user/" + username + "/comments.json";
             HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+//            connection.setRequestProperty("User-Agent", "hackviolet/1.0 (by /u/leather_chestplate)");
             connection.setRequestMethod("GET");
 
             int responseCode = connection.getResponseCode();
@@ -57,7 +58,7 @@ public class RedditScraper implements Scraper {
                     }
                 }
             } else {
-                System.out.println("Failed to fetch user comments. HTTP response code: " + responseCode);
+                System.out.println("Reddit Scraper failed to fetch user comments. HTTP response code: " + responseCode);
             }
         } catch (IOException e) {
             e.printStackTrace();
